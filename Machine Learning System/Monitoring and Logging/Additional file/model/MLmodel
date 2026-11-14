@@ -1,0 +1,77 @@
+artifact_path: model
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.12.16
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.5.2
+mlflow_version: 2.19.0
+model_size_bytes: 3024177
+model_uuid: 0d1b74c998ff49619ba1705e70aeb92d
+run_id: bdae85f918e6452d97e9877d021aa22f
+saved_input_example_info:
+  artifact_path: input_example.json
+  pandas_orient: split
+  serving_input_path: serving_input_example.json
+  type: dataframe
+signature:
+  inputs: '[{"type": "double", "name": "duration_months", "required": true}, {"type":
+    "double", "name": "credit_amount", "required": true}, {"type": "double", "name":
+    "installment_rate", "required": true}, {"type": "double", "name": "residence_since",
+    "required": true}, {"type": "double", "name": "age_years", "required": true},
+    {"type": "double", "name": "existing_credits", "required": true}, {"type": "double",
+    "name": "num_dependents", "required": true}, {"type": "double", "name": "checking_status_A11",
+    "required": true}, {"type": "double", "name": "checking_status_A12", "required":
+    true}, {"type": "double", "name": "checking_status_A13", "required": true}, {"type":
+    "double", "name": "checking_status_A14", "required": true}, {"type": "double",
+    "name": "credit_history_A30", "required": true}, {"type": "double", "name": "credit_history_A31",
+    "required": true}, {"type": "double", "name": "credit_history_A32", "required":
+    true}, {"type": "double", "name": "credit_history_A33", "required": true}, {"type":
+    "double", "name": "credit_history_A34", "required": true}, {"type": "double",
+    "name": "purpose_A40", "required": true}, {"type": "double", "name": "purpose_A41",
+    "required": true}, {"type": "double", "name": "purpose_A410", "required": true},
+    {"type": "double", "name": "purpose_A42", "required": true}, {"type": "double",
+    "name": "purpose_A43", "required": true}, {"type": "double", "name": "purpose_A44",
+    "required": true}, {"type": "double", "name": "purpose_A45", "required": true},
+    {"type": "double", "name": "purpose_A46", "required": true}, {"type": "double",
+    "name": "purpose_A48", "required": true}, {"type": "double", "name": "purpose_A49",
+    "required": true}, {"type": "double", "name": "savings_status_A61", "required":
+    true}, {"type": "double", "name": "savings_status_A62", "required": true}, {"type":
+    "double", "name": "savings_status_A63", "required": true}, {"type": "double",
+    "name": "savings_status_A64", "required": true}, {"type": "double", "name": "savings_status_A65",
+    "required": true}, {"type": "double", "name": "employment_since_A71", "required":
+    true}, {"type": "double", "name": "employment_since_A72", "required": true}, {"type":
+    "double", "name": "employment_since_A73", "required": true}, {"type": "double",
+    "name": "employment_since_A74", "required": true}, {"type": "double", "name":
+    "employment_since_A75", "required": true}, {"type": "double", "name": "personal_status_sex_A91",
+    "required": true}, {"type": "double", "name": "personal_status_sex_A92", "required":
+    true}, {"type": "double", "name": "personal_status_sex_A93", "required": true},
+    {"type": "double", "name": "personal_status_sex_A94", "required": true}, {"type":
+    "double", "name": "other_debtors_A101", "required": true}, {"type": "double",
+    "name": "other_debtors_A102", "required": true}, {"type": "double", "name": "other_debtors_A103",
+    "required": true}, {"type": "double", "name": "property_type_A121", "required":
+    true}, {"type": "double", "name": "property_type_A122", "required": true}, {"type":
+    "double", "name": "property_type_A123", "required": true}, {"type": "double",
+    "name": "property_type_A124", "required": true}, {"type": "double", "name": "other_installment_plans_A141",
+    "required": true}, {"type": "double", "name": "other_installment_plans_A142",
+    "required": true}, {"type": "double", "name": "other_installment_plans_A143",
+    "required": true}, {"type": "double", "name": "housing_A151", "required": true},
+    {"type": "double", "name": "housing_A152", "required": true}, {"type": "double",
+    "name": "housing_A153", "required": true}, {"type": "double", "name": "job_A171",
+    "required": true}, {"type": "double", "name": "job_A172", "required": true}, {"type":
+    "double", "name": "job_A173", "required": true}, {"type": "double", "name": "job_A174",
+    "required": true}, {"type": "double", "name": "telephone_A191", "required": true},
+    {"type": "double", "name": "telephone_A192", "required": true}, {"type": "double",
+    "name": "foreign_worker_A201", "required": true}, {"type": "double", "name": "foreign_worker_A202",
+    "required": true}]'
+  outputs: '[{"type": "long", "required": true}]'
+  params: null
+utc_time_created: '2026-11-06 09:21:13.349919'

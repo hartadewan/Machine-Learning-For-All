@@ -1,0 +1,68 @@
+services:
+  inference:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["python", "7.inference.py"]
+    environment:
+      MLFLOW_TRACKING_URI: file:///app/mlruns
+      MLFLOW_MODEL_URI: ${MLFLOW_MODEL_URI}
+      MODEL_VERSION: ${MODEL_VERSION:-local}
+    volumes:
+      - "./file tambahan/model:/app/model:ro"
+    ports:
+      - "8080:8080"
+      - "8001:8001"
+    restart: unless-stopped
+
+  exporter:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["python", "3.prometheus_exporter.py"]
+    environment:
+      SERVING_URL: http://inference:8080
+    depends_on:
+      - inference
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+
+  prometheus:
+    image: prom/prometheus:v3.7.3
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.retention.time=7d"
+    depends_on:
+      - inference
+      - exporter
+    ports:
+      - "9090:9090"
+
+  grafana:
+    image: grafana/grafana:12.2.0
+    environment:
+      GF_SECURITY_ADMIN_USER: "admin"
+      GF_SECURITY_ADMIN_PASSWORD: "dicoding-monitoring"
+      GF_USERS_ALLOW_SIGN_UP: "false"
+      GF_SMTP_ENABLED: "true"
+      GF_SMTP_HOST: "smtp.gmail.com:465"
+      GF_SMTP_USER: "hartantodewantoro1999@gmail.com"
+      GF_SMTP_PASSWORD: "sjctdjubqqohjolk"
+      GF_SMTP_FROM_ADDRESS: "hartantodewantoro1999@gmail.com"
+      GF_SMTP_FROM_NAME: "Grafana"
+      GF_SMTP_SKIP_VERIFY: "false"
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning:ro
+    depends_on:
+      - prometheus
+    ports:
+      - "3000:3000"
+
+volumes:
+  prometheus-data:
+  grafana-data:
